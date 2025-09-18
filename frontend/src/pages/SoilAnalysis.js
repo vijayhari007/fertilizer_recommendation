@@ -33,7 +33,7 @@ const SoilAnalysis = () => {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/soil-analysis', formData);
+      const res = await axios.post('https://fertilizer-recommendation-0qbu.onrender.com/api/soil-analysis', formData);
       if (res.data.success) {
         setAnalysis(res.data.analysis);
         toast.success('Soil analysis completed');
