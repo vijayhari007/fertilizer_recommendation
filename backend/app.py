@@ -6,21 +6,18 @@ import joblib
 import os
 from datetime import datetime
 import json
-app = Flask(__name__)
+from flask import Flask, send_from_directory
 
-# Root route
-@app.route("/")
-def home():
-    return "✅ Fertilizer Recommendation API is running on Render 🚀"
+app = Flask(__name__, static_folder='../frontend/build')
 
-# Your existing routes go here...
-# Example:
-# @app.route("/recommend", methods=["POST"])
-# def recommend():
-#     ...
+@app.route('/')
+def serve_frontend():
+    return send_from_directory(app.static_folder, 'index.html')
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+@app.route('/api')
+def api_root():
+    return "Welcome to Fertilizer Recommendation API"
+
 # Load datasets and model
 def load_data():
     try:
