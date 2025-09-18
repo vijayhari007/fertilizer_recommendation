@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { BeakerIcon } from '@heroicons/react/24/outline';
+const SOIL_ANALYSIS_URL = 'https://fertilizer-recommendation-0qbu.onrender.com/api/soil-analysis';
 
 const SoilAnalysis = () => {
   const [formData, setFormData] = useState({
