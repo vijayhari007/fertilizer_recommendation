@@ -9,6 +9,8 @@ import {
 } from '@heroicons/react/24/outline';
 import SearchableSelect from '../components/SearchableSelect';
 import AsyncSearchSelect from '../components/AsyncSearchSelect';
+const BACKEND_BASE = 'https://fertilizer-recommendation-0qbu.onrender.com';
+
 
 const Recommendation = () => {
   const [formData, setFormData] = useState({
