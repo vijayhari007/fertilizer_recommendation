@@ -6,10 +6,21 @@ import joblib
 import os
 from datetime import datetime
 import json
-
 app = Flask(__name__)
-CORS(app)
 
+# Root route
+@app.route("/")
+def home():
+    return "✅ Fertilizer Recommendation API is running on Render 🚀"
+
+# Your existing routes go here...
+# Example:
+# @app.route("/recommend", methods=["POST"])
+# def recommend():
+#     ...
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
 # Load datasets and model
 def load_data():
     try:
