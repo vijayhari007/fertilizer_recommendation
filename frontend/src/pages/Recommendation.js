@@ -37,7 +37,7 @@ const Recommendation = () => {
 
   const fetchCrops = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/crops');
+      const response = await axios.get(`${BACKEND_BASE}/api/crops`);
       setCrops(response.data.crops);
     } catch (error) {
       toast.error('Failed to load crops data');
@@ -67,7 +67,7 @@ const Recommendation = () => {
     setLoading(true);
     
     try {
-      const response = await axios.post('http://localhost:5000/api/recommend', formData);
+      const response = await axios.post(`${BACKEND_BASE}/api/recommend`, formData);
       
       if (response.data.success) {
         setRecommendations(response.data.recommendations);
@@ -136,7 +136,7 @@ const Recommendation = () => {
               <div className="space-y-2">
                 <label className="label">Find Soil by Location / Type (Auto-fill)</label>
                 <AsyncSearchSelect
-                  searchUrl="http://localhost:5000/api/soils"
+                  searchUrl={`${BACKEND_BASE}/api/soils`}
                   placeholder="Type city, district, state, or soil type (e.g., Kurnool, Black)"
                   minChars={0}
                   onSelect={(item) => {
