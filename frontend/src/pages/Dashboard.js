@@ -12,7 +12,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get('https://fertilizer-recommendation-0qbu.onrender.com/api/stats');
+        const res = await axios.get(`${BACKEND_BASE}/api/stats`);
         setStats(res.data);
       } catch (err) {
         console.error('Failed to fetch stats', err);
