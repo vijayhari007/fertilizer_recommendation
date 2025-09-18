@@ -6,7 +6,7 @@ import joblib
 import os
 from datetime import datetime
 
-# Single Flask app
+# ---------- Flask App ----------
 app = Flask(__name__, static_folder='../frontend/build')
 CORS(app, origins=["https://fertilizer-recommendations-ngu8.onrender.com"])
 
@@ -59,9 +59,8 @@ soil_data, crop_data, fertilizer_data, model = load_data()
 # ---------- API Endpoints ----------
 @app.route('/api/recommend', methods=['POST'])
 def recommend_fertilizer():
-    # Your recommendation code here (unchanged)
     data = request.get_json()
-    # ... process and return recommendations ...
+    # TODO: Add logic with `model` and datasets
     return jsonify({"success": True, "recommendations": [], "input": data})
 
 @app.route('/api/crops', methods=['GET'])
@@ -81,8 +80,27 @@ def get_fertilizers():
     ]
     return jsonify({"fertilizers": fertilizers})
 
-# Add your other endpoints (/api/soil-analysis, /api/stats, etc.) here
-# Make sure routes start with /api
+@app.route('/api/soil-analysis', methods=['POST'])
+def soil_analysis():
+    data = request.get_json()
+    # Example: return nutrient balance analysis
+    return jsonify({
+        "success": True,
+        "input": data,
+        "analysis": {
+            "nitrogen": "Low",
+            "phosphorus": "Optimal",
+            "potassium": "High"
+        }
+    })
+
+@app.route('/api/stats', methods=['GET'])
+def stats():
+    return jsonify({
+        "total_crops": 2 if crop_data is not None else 0,
+        "total_fertilizers": 1 if fertilizer_data is not None else 0,
+        "last_updated": datetime.utcnow().isoformat() + "Z"
+    })
 
 # ---------- Run App ----------
 if __name__ == '__main__':
